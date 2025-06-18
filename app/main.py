@@ -7,7 +7,7 @@ import os
 import re
 from pathlib import Path
 
-import google.generativeai as genai
+import google.genai as genai
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, HttpUrl
@@ -68,7 +68,7 @@ async def health_check():
     """ヘルスチェックエンドポイント"""
     try:
         # Gemini API の疎通確認
-        model = genai.GenerativeModel("gemini-2.0-flash-exp")
+        model = genai.GenerativeModel("gemini-2.5-pro")
         response = model.generate_content("Hello")
         return {"status": "healthy", "gemini_api": "connected"}
     except Exception as e:
@@ -107,7 +107,7 @@ async def generate_contract(request: ContractRequest):
             main_text = main_text[:150000]
             
         # Gemini API で契約文を生成
-        model = genai.GenerativeModel("gemini-2.0-flash-exp")
+        model = genai.GenerativeModel("gemini-2.5-pro")
         
         # System instruction と user content を分けて送信
         response = model.generate_content([
