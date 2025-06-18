@@ -1,0 +1,1 @@
+# QuickContract - 契約文生成API
